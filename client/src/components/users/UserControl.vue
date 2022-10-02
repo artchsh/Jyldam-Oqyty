@@ -1,5 +1,4 @@
 <template>
-    <div class="wrapper" style="width: 500px;">
         <div class="bg-grey-darken-4 text-white ma-2 pa-2 rounded-lg">
             <v-form ref="form" v-model="valid">
                 <v-text-field v-model="login" label="Login" required></v-text-field>
@@ -17,33 +16,12 @@
             <h1>Response</h1>
             <p>{{ responsePost }}</p>
         </div>
-        <v-card class="ma-2 bg-grey-darken-4" max-width="344" v-for="user in users" :key="user._id">
-            <v-card-text>
-                <div>{{ user._id }}</div>
-                <p class="text-h4 text--primary">
-                    {{ user.name || 'No name' }} {{ user.surname }}
-                </p>
-                <p class="mb-1">{{ user.login || 'No login' }}</p>
-                <div class="text--primary">
-                    Email: {{ user.email || 'No' }}<br>
-                    Password: {{ user.password || 'No' }}<br>
-                    Phone Number: {{ user.phoneNumber || 'No' }}<br>
-                    Access Level: {{ user.accessLevel || 'No' }}<br>
-                    User Type: {{ user.userType || 'No' }}
-                </div>
-            </v-card-text>
-            <v-card-actions>
-                <v-btn text class="deep-purple-accent-4">
-                    Profile
-                </v-btn>
-            </v-card-actions>
-        </v-card>
-    </div>
+        
 </template>
 <script>
 import axios from 'axios'
 export default {
-    name: 'TestForm',
+    name: 'UserControl',
     components: {},
     data: function () {
         return {
@@ -54,8 +32,6 @@ export default {
             password: '',
             phoneNumber: '',
             responsePost: '',
-            responseUsers: '',
-            users: [],
             valid: true
         }
     },
@@ -73,20 +49,8 @@ export default {
                     phoneNumber: this.phoneNumber
                 }
             })
-            await axios
-                .get('http://localhost:3000/api/users/list')
-                .then(response => this.responseUsers = response)
         }
-    },
-    async mounted() {
-        await axios
-            .get('http://localhost:3000/api/users/list')
-            .then(response => this.responseUsers = response)
-        let allUsers = this.responseUsers
-        this.users = allUsers.data
     }
 }
 </script>
-<style>
-
-</style>
+<style></style>
