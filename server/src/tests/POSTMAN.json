@@ -1,0 +1,35 @@
+[
+  {
+    "title": "Physics",
+    "updateDate": "30.09.2022",
+    "themes": [
+      {
+        "title": "Theme 1",
+        "video": "https://youtube.com/...",
+        "links": [
+          { "name": "Test 1", "link": "https://google.forms/..." },
+          { "name": "Materials", "link": "https://yadi.sk/..." }
+        ]
+      }
+    ],
+    "price": [{ "KZT": 1000 }, { "USD": 3 }, { "RUB": 150 }]
+  },
+  {
+    "name": "John",
+    "surname": "Doe",
+    "avatar": "hash",
+    "login": "johnDoe",
+    "email": "john@doe.com",
+    "quickAcces": [],
+    "bookmarks": [],
+    "purchaseHistory": [
+      { "title": "Physics", "date": "30.09.2022", "price": "3 USD" }
+    ],
+    "password": "1234678",
+    "phoneNumber": "+1 234 56 78 89",
+    "accessLevel": 1,
+    "userType": 1,
+    "subjects": ["physics", "math", "biology"],
+    "inventory": []
+  }
+]
