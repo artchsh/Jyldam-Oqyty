@@ -7,11 +7,12 @@ import HelloWorld from "../components/HelloWorld.vue";
 const routes = [
   {
     path: "/test/user",
+    name: "testUser",
     component: TestFormUsers,
   },
   {
     path: "/test/hello",
-    name: "hello",
+    name: "testHello",
     component: HelloWorld,
   }
 ];

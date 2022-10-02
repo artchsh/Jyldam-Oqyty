@@ -1,37 +1,43 @@
 <template>
-    <div class="wrapper">
-        <div class="form">
-            <form @submit.prevent="sendData">
-
-                <label for="login">login</label>
-                <input v-model="login" type="text" id="login" name="login">
-
-                <label for="name">name</label>
-                <input v-model="name" type="text" id="name" name="name">
-
-                <label for="surname">surname</label>
-                <input v-model="surname" type="text" id="surname" name="surname">
-
-                <label for="email">email</label>
-                <input v-model="email" type="text" id="email" name="email">
-
-                <label for="password">password</label>
-                <input v-model="password" type="text" id="password" name="password">
-
-                <label for="phoneNumber">phoneNumber</label>
-                <input v-model="phoneNumber" type="text" id="phoneNumber" name="phoneNumber">
-
-                <input type="submit" value="Send" />
-            </form>
+    <div class="wrapper" style="width: 500px;">
+        <div class="bg-grey-darken-4 text-white ma-2 pa-2 rounded-lg">
+            <v-form ref="form" v-model="valid">
+                <v-text-field v-model="login" label="Login" required></v-text-field>
+                <v-text-field v-model="name" label="Name" required></v-text-field>
+                <v-text-field v-model="surname" label="Surname" required></v-text-field>
+                <v-text-field v-model="email" label="E-mail" required></v-text-field>
+                <v-text-field v-model="password" label="Password" required></v-text-field>
+                <v-text-field v-model="phoneNumber" label="Phone number" required></v-text-field>
+                <v-btn color="success" class="mr-4" @click="sendData">
+                    Register
+                </v-btn>
+            </v-form>
         </div>
-        <div class="json">
+        <div class="bg-grey-darken-4 text-white text-center ma-2 pa-2 rounded-lg">
             <h1>Response</h1>
             <p>{{ responsePost }}</p>
         </div>
-        <div class="json">
-            <h1>All Users</h1>
-            <p>{{ responseUsers }}</p>
-        </div>
+        <v-card class="ma-2 bg-grey-darken-4" max-width="344" v-for="user in users" :key="user._id">
+            <v-card-text>
+                <div>{{ user._id }}</div>
+                <p class="text-h4 text--primary">
+                    {{ user.name || 'No name' }} {{ user.surname }}
+                </p>
+                <p class="mb-1">{{ user.login || 'No login' }}</p>
+                <div class="text--primary">
+                    Email: {{ user.email || 'No' }}<br>
+                    Password: {{ user.password || 'No' }}<br>
+                    Phone Number: {{ user.phoneNumber || 'No' }}<br>
+                    Access Level: {{ user.accessLevel || 'No' }}<br>
+                    User Type: {{ user.userType || 'No' }}
+                </div>
+            </v-card-text>
+            <v-card-actions>
+                <v-btn text class="deep-purple-accent-4">
+                    Profile
+                </v-btn>
+            </v-card-actions>
+        </v-card>
     </div>
 </template>
 <script>
@@ -48,12 +54,13 @@ export default {
             password: '',
             phoneNumber: '',
             responsePost: '',
-            responseUsers: ''
+            responseUsers: '',
+            users: [],
+            valid: true
         }
     },
     methods: {
         async sendData() {
-            // console.log(this.login, this.name, this.surname, this.email, this.password, this.phoneNumber);
             this.responsePost = await axios({
                 url: 'http://localhost:3000/api/users/add',
                 method: 'post',
@@ -68,57 +75,18 @@ export default {
             })
             await axios
                 .get('http://localhost:3000/api/users/list')
-                .then(reponse => this.responseUsers = reponse)
+                .then(response => this.responseUsers = response)
         }
-
+    },
+    async mounted() {
+        await axios
+            .get('http://localhost:3000/api/users/list')
+            .then(response => this.responseUsers = response)
+        let allUsers = this.responseUsers
+        this.users = allUsers.data
     }
-
 }
 </script>
 <style>
-.wrapper {
-    width: 100%;
-}
 
-.form {
-    max-width: 100%;
-    padding: 1rem;
-    color: white;
-    background: rgb(48, 48, 48);
-    margin: .5rem;
-    border-radius: 1rem;
-    display: flex;
-    justify-content: center;
-}
-
-.json {
-    max-width: 100%;
-    padding: .2rem;
-    color: white;
-    background: rgb(48, 48, 48);
-    margin: .5rem;
-    border-radius: 1rem;
-}
-
-.json p {
-    width: 90%;
-    margin: auto;
-    text-align: center;
-    margin-bottom: 1rem;
-}
-
-form {
-    display: inline-block;
-}
-
-label,
-input {
-    display: block;
-    width: 200px;
-}
-
-input[type="submit"] {
-    margin-top: 1rem;
-    width: 200px;
-}
 </style>

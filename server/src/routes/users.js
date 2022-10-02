@@ -10,12 +10,14 @@ async function mongooseConnect() {
 
 router.use(logger)
 
+mongooseConnect().catch(err => { return console.log(err) })
+
 router.get('/', (req, res) => {
     res.send('Go on.')
 })
 
 router.post('/add', async (req, res) => {
-    mongooseConnect().catch(err => { return console.log(err) })
+    
     const user = new userSchema(req.body)
     user.save((err, user) => {
         if (err) {
@@ -32,7 +34,6 @@ router.get('/find/:id', (req, res) => {
 })
 
 router.get('/list', (req, res) => {
-    mongooseConnect().catch(err => console.log(err))
     userSchema.find({}, function (err, docs) {
         if (err) { res.send(err) }
         res.json(docs)
