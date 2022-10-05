@@ -4,11 +4,13 @@
     "updateDate": "30.09.2022",
     "themes": [
       {
+        "_id": "a4162124-439b-11ed-b878-0242ac120002",
         "title": "Theme 1",
+        "text": "sample.",
         "video": "https://youtube.com/...",
         "links": [
-          { "name": "Test 1", "link": "https://google.forms/..." },
-          { "name": "Materials", "link": "https://yadi.sk/..." }
+          { "name": "Test 1", "link": "https://google.forms/...", "type": "gforms"},
+          { "name": "Materials", "link": "https://yadi.sk/...", "type": "yadisk" }
         ]
       }
     ],

@@ -21,37 +21,55 @@ export default {
 </script>
 <template>
     <div class="wrapper">
-        <v-card class="ma-2 bg-grey-darken-4" v-for="subject in subjects" :key="subject._id">
-            <v-card-text>
-                <div>{{ subject._id }}</div>
-                <p class="text-h4 text--primary">
-                    {{ subject.title || 'No title' }}
-                </p>
-                <p class="mb-1">{{ subject.updateDate || 'null' }}</p>
-                <div class="text--primary">
-                    Access Level: {{ subject.accessLevel || 'No' }}<br>
-                    subject Type: {{ subject.subjectType || 'No' }}<br>
-                    Themes:<br>
-                    <code v-for="(theme, i) in subject.themes" :key="i" class="text-subtitle-1">
-                                Title: {{ theme.title }}<br>
-                                Video: {{ theme.video }}<br>
-                                links: <p v-for="(link, i) in theme.links" :key="i">{{ link }}</p><br>
-                            </code>
-                    Price: <p v-for="(price ,i) in subject.price" :key="i">{{ price }}
-                    </p>
+        <div class="card" v-for="subject in subjects" :key="subject._id">
+            <p>ID: {{ subject._id }}</p>
+            <p>Title: {{ subject.title || 'No title' }}</p>
+            <p>Update date: {{ subject.updateDate || 'null' }}</p>
+            <p>Access Level: {{ subject.accessLevel || 'No' }}</p>
+            <p>subject Type: {{ subject.subjectType || 'No' }}</p>
+            Themes:
+            <div class="card__block_1" v-for="(theme, i) in subject.themes" :key="i">
+                <p>Title: {{ theme.title }}</p>
+                <p>Video: {{ theme.video }}</p>
+                <p>links:</p>
+                <div class="card__block_2" v-for="(link, i) in theme.links" :key="i">
+                    <p>Name: {{ link.name }}</p>
+                    <p>Link: <a v-bind:href="link.link">{{ link.link }}</a></p>
                 </div>
-            </v-card-text>
-            <v-card-actions>
-                <v-btn text class="deep-purple-accent-4">
-                    Open
-                </v-btn>
-            </v-card-actions>
-        </v-card>
+            </div>
+            <div class="card__block_1">
+                <p>Price:</p>
+                <p v-for="(price, i) in subject.price" :key="i">
+                    {{ Object.keys(price)[0] }} - {{ Object.values(price)[0] }}
+                </p>
+            </div>
+        </div>
     </div>
 </template>
 <style scoped>
 .wrapper {
     display: flex;
     flex-wrap: wrap;
+}
+
+.card {
+    width: 340px;
+    display: flex;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    background-color: #666;
+    margin: 0.2rem;
+}
+
+.card__block_1 {
+    background-color: #777;
+    margin-bottom: 1rem
+}
+
+.card__block_2 {
+    background-color: #888;
+    width: fit-content;
+    margin-left: 1rem;
 }
 </style>

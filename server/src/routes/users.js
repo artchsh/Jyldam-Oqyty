@@ -2,7 +2,7 @@ const express = require("express")
 const router = express.Router()
 const userSchema = require('../models/user')
 const mongoose = require('mongoose')
-
+const url = 'mongodb://localhost:27017/user'
 async function mongooseConnect() {
     await mongoose.connect('mongodb://localhost:27017/user')
     // use `await mongoose.connect('mongodb://user:password@localhost:27017/test');` if your database has auth enabled
@@ -10,14 +10,21 @@ async function mongooseConnect() {
 
 router.use(logger)
 
-mongooseConnect().catch(err => { return console.log(err) })
+mongooseConnect().catch(err => console.log(err))
+let db = mongoose.connection
+db.once('open', _ => {
+    console.log('Database connected:', url)
+})
+db.on('error', err => {
+    console.error('connection error:', err)
+})
 
 router.get('/', (req, res) => {
     res.send('Go on.')
 })
 
 router.post('/add', async (req, res) => {
-    
+
     const user = new userSchema(req.body)
     user.save((err, user) => {
         if (err) {
@@ -25,12 +32,29 @@ router.post('/add', async (req, res) => {
         }
         console.log('saved user')
     })
-    res.json({ "state": "success", "requestBody": req.body})
+    res.json({ "state": "success", "requestBody": req.body })
 })
 
 router.get('/find/:id', (req, res) => {
     let id = req.params.id
     res.json({ "api": "user_find", "id": id })
+})
+
+router.post('/find/update/:id', (req, res) => {
+    let id = req.params.id
+    var userId = req.body.userId;
+
+    var conditions = {
+        _id: userId
+    }
+
+    userSchema.findOneAndUpdate(conditions, update, function (error, result) {
+        if (error) {
+            res.sendStatus(500)
+        } else {
+            console.log(result);
+        }
+    });
 })
 
 router.get('/list', (req, res) => {

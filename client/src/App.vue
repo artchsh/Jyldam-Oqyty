@@ -4,7 +4,10 @@
       <router-link :to="{ name: 'Home' }" class="active">Home</router-link>
     </li>
     <li>
-      <router-link :to="{ name: 'ControlPanel' }">User Control panel</router-link>
+      <router-link :to="{ name: 'ControlPanel' }">Control panel</router-link>
+    </li>
+    <li>
+      <router-link :to="{ name: 'SubjectsViewPanel' }">Subjects View Panel</router-link>
     </li>
   </ul>
   <v-app>
@@ -24,12 +27,17 @@ export default {
 };
 </script>
 <style scoped>
+
+
 ul.topnav {
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
   background-color: #333;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 ul.topnav li {
