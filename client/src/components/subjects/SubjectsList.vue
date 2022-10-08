@@ -43,6 +43,7 @@ export default {
                     {{ Object.keys(price)[0] }} - {{ Object.values(price)[0] }}
                 </p>
             </div>
+            <a :href="'./subjects/' + subject._id">Edit</a>
         </div>
     </div>
 </template>

@@ -24,6 +24,6 @@ const subjectSchema = mongoose.Schema({
   price: Array
 })
 
-const Subject = mongoose.model('Subject', subjectSchema)
-
-module.exports = Subject
+exports.subjectSchema = mongoose.model('Subject', subjectSchema)
+exports.themeSchema = mongoose.model('Theme', themeSchema)
+exports.linkSchema = mongoose.model('Link', linkSchema)

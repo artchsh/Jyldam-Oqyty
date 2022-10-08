@@ -1,7 +1,8 @@
 const express = require('express')
+const config = require('../secrets/config')
 
 const app = express()
-const port = 3000
+const port = config.backend.port
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())

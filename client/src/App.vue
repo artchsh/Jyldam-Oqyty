@@ -10,12 +10,7 @@
       <router-link :to="{ name: 'SubjectsViewPanel' }">Subjects View Panel</router-link>
     </li>
   </ul>
-  <v-app>
-    <v-main>
-
-      <router-view />
-    </v-main>
-  </v-app>
+  <router-view />
 </template>
 <script>
 export default {
@@ -31,13 +26,15 @@ export default {
 
 ul.topnav {
   list-style-type: none;
-  margin: 0;
+  margin: .3rem;
   padding: 0;
   overflow: hidden;
   background-color: #333;
   position: absolute;
   top: 0;
   left: 0;
+  border-radius: 10px;
+  box-shadow: rgb(0, 0, 0, 0.2) 5px 5px 10px;
 }
 
 ul.topnav li {
@@ -50,6 +47,7 @@ ul.topnav li a {
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
+  transition: all .3s ease-in;
 }
 
 ul.topnav li a:hover:not(.active) {

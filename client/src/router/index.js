@@ -3,7 +3,6 @@ import { createRouter, createWebHistory  } from "vue-router";
 import SubjectList from "@/components/subjects/SubjectsList.vue"
 import ControlPanel from "@/views/admin/ControlPanel.vue";
 import SubjectEditor from "@/views/admin/SubjectEdit.vue"
-import ThemeEditor from "@/components/subjects/themes/ThemeControl.vue"
 import HomeView from "@/views/HomeView.vue"
 
 
@@ -27,11 +26,6 @@ const routes = [
     path: "/controlpanel/subjects/:id",
     name: "SubjectsControlPanelByID",
     component: SubjectEditor
-  },
-  {
-    path: "/controlpanel/subjects/themes/edit/:subjectID/:themeID",
-    name: "ThemesSubjectControlPanelByID",
-    component: ThemeEditor
   }
 ];
 
