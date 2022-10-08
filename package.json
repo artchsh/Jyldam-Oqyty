@@ -5,8 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "cd server & npm start"
+    "server": "cd server & npm start",
+    "client": "cd client & npm run serve",
+    "start": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^7.4.0"
+  }
 }
