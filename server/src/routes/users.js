@@ -1,23 +1,6 @@
 const express = require("express")
 const router = express.Router()
 const userSchema = require('../models/user')
-const mongoose = require('mongoose')
-const url = 'mongodb://localhost:27017/user'
-async function mongooseConnect() {
-    await mongoose.connect('mongodb://localhost:27017/user')
-    // use `await mongoose.connect('mongodb://user:password@localhost:27017/test');` if your database has auth enabled
-}
-
-router.use(logger)
-
-mongooseConnect().catch(err => console.log(err))
-let db = mongoose.connection
-db.once('open', _ => {
-    console.log('Database connected:', url)
-})
-db.on('error', err => {
-    console.error('connection error:', err)
-})
 
 router.get('/', (req, res) => {
     res.send('Go on.')

@@ -5,9 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "cd server & npm start",
+    "serverDev": "cd server & npm run dev",
+    "serverProd": "cd server & npm start",
     "client": "cd client & npm run serve",
-    "start": "concurrently \"npm run server\" \"npm run client\""
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "dev": "concurrently \"npm run serverDev\" \"npm run client\""
   },
   "author": "",
   "license": "ISC",

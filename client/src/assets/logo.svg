@@ -1,6 +1,32 @@
-<svg width="488" height="424" viewBox="0 0 488 424" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M249.126 95.017L151.843 263.694L243.959 423.473L365.966 211.973L487.918 0.473206H303.629L249.126 95.017Z" fill="#1697F6"/>
-<path d="M122.007 211.973L128.396 223.096L219.402 65.2635L256.793 0.473206H243.959H0L122.007 211.973Z" fill="#AEDDFF"/>
-<path d="M303.629 0.473206C349.743 152.355 243.959 423.473 243.959 423.473L151.843 263.694L303.629 0.473206Z" fill="#1867C0"/>
-<path d="M256.793 0.473206C62.5042 0.473206 128.397 223.096 128.397 223.096L256.793 0.473206Z" fill="#7BC6FF"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="uuid-fee9d3fe-42fa-4fca-885b-1ec0a11dc294" data-name="Группа 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576.44 113.84">
+  <defs>
+    <style>
+      .uuid-e5800418-0c2d-4647-8c41-3e2f5499f1b3 {
+        fill: #fff;
+      }
+
+      .uuid-e5800418-0c2d-4647-8c41-3e2f5499f1b3, .uuid-1348f7cc-222a-4493-81aa-15140289f66b {
+        font-family: Nunito-Bold, Nunito;
+        font-size: 120px;
+      }
+
+      .uuid-1348f7cc-222a-4493-81aa-15140289f66b {
+        fill: #e76c41;
+      }
+
+      .uuid-3e1dc46a-f206-4139-81df-d3e0b0873ad4 {
+        fill: #5060ff;
+      }
+    </style>
+  </defs>
+  <g id="uuid-be6db5ca-0cce-4ed5-ba10-52013a2fb8e4" data-name="Прямоугольник 1">
+    <rect class="uuid-3e1dc46a-f206-4139-81df-d3e0b0873ad4" x="0" y="0" width="230.68" height="113.84" rx="13.98" ry="13.98"/>
+  </g>
+  <g id="uuid-d324b1df-7d54-46eb-970f-24e19d816786" data-name="Edu">
+    <text class="uuid-e5800418-0c2d-4647-8c41-3e2f5499f1b3" transform="translate(9.99 97.36)"><tspan x="0" y="0">Edu</tspan></text>
+  </g>
+  <g id="uuid-b5a54c96-4531-4c67-ad8c-2a7d04291f67" data-name="Portal">
+    <text class="uuid-1348f7cc-222a-4493-81aa-15140289f66b" transform="translate(231.68 96.37)"><tspan x="0" y="0">Portal</tspan></text>
+  </g>
 </svg>

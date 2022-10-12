@@ -1,23 +1,6 @@
-// express
 const express = require("express")
 const router = express.Router()
-
-// mongodb
 const subjectModel = require('../models/subject')
-const mongoose = require('mongoose')
-const config = require('../../../secrets/config')
-const url = config.mongo.connect
-async function mongooseConnect() { await mongoose.connect(url) }
-mongooseConnect().catch(err => console.log(err))
-
-// troubleshooting
-let db = mongoose.connection
-db.once('open', _ => {
-    console.log('Database connected:', url)
-})
-db.on('error', err => {
-    console.error('connection error:', err)
-})
 
 // logger for express
 router.use(logger)

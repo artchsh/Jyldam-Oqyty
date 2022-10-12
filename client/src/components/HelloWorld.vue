@@ -1,114 +1,60 @@
 <template>
-  <v-container>
-    <v-row class="text-center">
-      <v-col cols="12">
-        <v-img :src="require('../assets/logo.svg')" class="my-3" contain height="200" />
-      </v-col>
-
-      <v-col class="mb-4">
-        <h1 class="display-2 font-weight-bold mb-3">
-          Welcome to the Vuetify 3 Beta
-        </h1>
-
-
-        <p class="subheading font-weight-regular">
-          For help and collaboration with other Vuetify developers,
-          <br>please join our online
-          <a href="https://community.vuetifyjs.com" target="_blank">Discord Community</a>
-        </p>
-      </v-col>
-
-      <v-col class="mb-5" cols="12">
-        <h2 class="headline font-weight-bold mb-5">
-          What's next?
-        </h2>
-
-        <v-row justify="center">
-          <a v-for="(next, i) in whatsNext" :key="i" :href="next.href" class="subheading mx-3" target="_blank">
-            {{ next.text }}
-          </a>
-        </v-row>
-      </v-col>
-
-      <v-col class="mb-5" cols="12">
-        <h2 class="headline font-weight-bold mb-5">
-          Important Links
-        </h2>
-
-        <v-row justify="center">
-          <a v-for="(link, i) in importantLinks" :key="i" :href="link.href" class="subheading mx-3" target="_blank">
-            {{ link.text }}
-          </a>
-        </v-row>
-      </v-col>
-
-      <v-col class="mb-5" cols="12">
-        <h2 class="headline font-weight-bold mb-5">
-          Ecosystem
-        </h2>
-
-        <v-row justify="center">
-          <a v-for="(eco, i) in ecosystem" :key="i" :href="eco.href" class="subheading mx-3" target="_blank">
-            {{ eco.text }}
-          </a>
-        </v-row>
-      </v-col>
-    </v-row>
-  </v-container>
+  <div class="wrapper">
+    <section class="border shadow mb-3 rounded">
+      <h1 class="p-2">Идея</h1>
+      <p class="p-2">Создание образовательного портала для учеников. Таким образом мы решаем проблему с тем, что многие ученики
+        попросту не могут подготовиться к поступлению в элитные школы. Подобные проекты уже имеются в Казахстане, но вся
+        их проблема в неудобстве пользования, в отсутствии/неверности задач/материалов, в дороговизне подготовки или
+        неудобное расположение. </p>
+    </section>
+    <section class="border shadow mb-3 rounded">
+      <h1 class="p-2">Описание</h1>
+      <p class="p-2">Нашей же целью было сделать портал максимально простым и удобным для учеников, т.к. мы считаем, что каждый
+        ученик должен иметь возможность получить качественную подготовку, независимо от того, где он живет и в какую
+        школу пойдет. Что касается материалов, то мы постарались их собрать все самое лучшее и интересное, причем мы
+        ориентировались на тех учеников, которые поступают в элитные образовательные учреждения. Мы не делали портал для
+        учителей, а наоборот, старались сделать его как можно более удобным именно для учеников и их родителей. В
+        результате, мы рады предложить вам наш образовательный портал, который станет для вас хорошим помощником в
+        подготовке к экзаменам.</p>
+    </section>
+    <section class="border shadow mb-3 rounded" style="z-index: 5000;">
+      <h1 class="p-2">Цель</h1>
+      <p class="p-2">Предоставить онлайн возможность ученикам подготовиться к поступлению в элитные школы, а также подтянуть свои
+        знания по предоставленным на сайте предметам.</p>
+    </section>
+  </div>
 </template>
-
 <script>
 
 export default {
   name: 'HelloWorld',
-
-  data: () => ({
-    ecosystem: [
-      {
-        text: 'vuetify-loader',
-        href: 'https://github.com/vuetifyjs/vuetify-loader/tree/next',
-      },
-      {
-        text: 'github',
-        href: 'https://github.com/vuetifyjs/vuetify/tree/next',
-      },
-      {
-        text: 'awesome-vuetify',
-        href: 'https://github.com/vuetifyjs/awesome-vuetify',
-      },
-    ],
-    importantLinks: [
-      {
-        text: 'Chat',
-        href: 'https://community.vuetifyjs.com',
-      },
-      {
-        text: 'Made with Vuetify',
-        href: 'https://madewithvuejs.com/vuetify',
-      },
-      {
-        text: 'Twitter',
-        href: 'https://twitter.com/vuetifyjs',
-      },
-      {
-        text: 'Articles',
-        href: 'https://medium.com/vuetify',
-      },
-    ],
-    whatsNext: [
-      {
-        text: 'Explore components',
-        href: 'https://vuetifyjs.com',
-      },
-      {
-        text: 'Roadmap',
-        href: 'https://vuetifyjs.com/introduction/roadmap/',
-      },
-      {
-        text: 'Frequently Asked Questions',
-        href: 'https://vuetifyjs.com/getting-started/frequently-asked-questions',
-      },
-    ],
-  }),
+  data: () => ({}),
 }
 </script>
+<style scoped>
+:root {
+  --primary-color: #4861ff;
+  --secondary-color: #ff7243;
+  --white-color: #fffefd;
+}
+.wrapper {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  height: 90vh;
+  flex-direction: column;
+}
+
+section.border {
+  text-align: center;
+  width: 80%;
+  max-width: 800px;
+  min-width: 450px;
+  border-radius: 10rem;
+  
+}
+section.border h1 {
+  background-color: #4861ff;
+  color:#fffefd;
+}
+</style>
