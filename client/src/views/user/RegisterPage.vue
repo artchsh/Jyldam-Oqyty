@@ -7,11 +7,16 @@ export default {
         return {}
     },
     methods: {},
-    async mounted() {}
+    async mounted() { }
 }
 </script>
 <template>
-    <div><RegisterForm/></div>
+    <div class="flex items-center justify-center w-screen h-screen">
+        <div class="p-5 border shadow rounded-xl w-96">
+            <RegisterForm />
+        </div>
+    </div>
 </template>
 <style scoped>
+
 </style>

@@ -31,7 +31,7 @@ const subjectRouter = require("./src/routes/subjects")
 app.use("/api/subjects", subjectRouter)
 
 const authRouter = require("./src/routes/auth")
-app.use("/auth", authRouter)
+app.use("/api/auth", authRouter)
 
 app.get('/api', (req, res) => {
   res.json({ "state": "online" })
