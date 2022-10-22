@@ -10,7 +10,6 @@ const port = config.backend.port
 async function mongooseConnect() { await mongoose.connect(url) }
 mongooseConnect().catch(err => console.log(err))
 
-// troubleshooting
 let db = mongoose.connection
 db.once('open', _ => {
     console.log('Database connected:', url)

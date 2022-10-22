@@ -2,12 +2,9 @@ const express = require("express")
 const router = express.Router()
 const subjectModel = require('../models/subject')
 
-// logger for express
 router.use(logger)
 
-// routes
 router.get('/list', (req, res) => {
-
     subjectModel.subjectSchema.find({}, function (err, docs) {
         if (err) { res.send(err) }
         res.json(docs)
@@ -85,7 +82,6 @@ router.patch('/themes/find/:id/:type', (req, res) => {
     })
 })
 
-// logger function for express
 function logger(req, res, next) {
     console.log(`http://localhost:3000${req.originalUrl}`)
     next()

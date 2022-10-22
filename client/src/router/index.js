@@ -1,11 +1,22 @@
-// import Vue from "vue";
 import { createRouter, createWebHistory  } from "vue-router";
-import SubjectList from "@/components/subjects/SubjectsList.vue"
-import ControlPanel from "@/views/admin/ControlPanel.vue";
-import SubjectEditor from "@/views/admin/SubjectEdit.vue"
-import HomeView from "@/views/HomeView.vue"
-import LoginPage from "@/views/user/LoginPage.vue"
-import RegisterPage from "@/views/user/RegisterPage.vue"
+
+// TODO components neeeds to change to VIEWS
+import SubjectList from "@/Components/Admin/Subjects/SubjectsList.vue"
+import SubjectEditor from "@/Components/Admin/Subjects/SubjectEditor.vue"
+
+// Admin Views
+import FeaturesView from '@/Views/Admin/FeaturesView.vue'
+import ControlPanel from "@/Views/Admin/ControlPanel.vue";
+
+
+// User Views
+import SubjectViewer from '@/Views/User/Subscription/SubjectViewer.vue'
+import LoginPage from "@/Views/User/Authentication/LoginPage.vue"
+import RegisterPage from "@/Views/User/Authentication/RegisterPage.vue"
+
+// Guest/Main views
+import HomeView from "@/Views/HomeView.vue"
+
 
 const routes = [
   {
@@ -37,12 +48,28 @@ const routes = [
     path: "/register",
     name: "AuthRegister",
     component: RegisterPage
-  }
+  },
+  {
+    path: '/dev',
+    name: 'FeaturesView',
+    component: FeaturesView
+  },
+  {
+    path: '/subjects',
+    name: 'subjects',
+    component: FeaturesView,
+  },
+  {
+    path: '/subjects/:subjectName',
+    name: 'SubjectViewer',
+    component: SubjectViewer
+  },
+  
 ];
 
-const router = new createRouter({
+const Router = new createRouter({
   history: createWebHistory(),
   routes,
 });
 
-export default router;
+export default Router;

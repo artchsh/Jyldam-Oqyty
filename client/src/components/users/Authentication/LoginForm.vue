@@ -1,30 +1,30 @@
 <template>
-    <div class="grid grid-cols-1 gap-6">
-        <label class="block">
-            <span class="text-gray-700">Логин</span>
+    <div class="">
+        <label class="">
+            <span class="">Логин</span>
             <input type='text'
-                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                class=""
                 v-model="login" label="Login" placeholder="">
         </label>
         <label class="block">
-            <span class="text-gray-700">Пароль</span>
+            <span class="">Пароль</span>
             <input type='password'
-                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                class=""
                 v-model="password" label="Password" placeholder="">
         </label>
-        <div class="inline-block w-fit">
+        <div class="">
             <button type="button"
-                class="mr-3 px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                class=""
                 @click="sendData">
                 войти
             </button>
-            <router-link class="text-blue-500 hover:text-blue-700" to="/">Забыли пароль?</router-link>
+            <router-link class="" to="/">Забыли пароль?</router-link>
         </div>
     </div>
-    <div class="">
+    <!-- <div class="">
         <h1>Response</h1>
         <p>{{ response }}</p>
-    </div>
+    </div> -->
 </template>
 <script>
 import axios from 'axios'

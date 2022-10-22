@@ -10,14 +10,12 @@ router.get('/', (req, res) => {
     res.json('200')
 })
 
-//bcrypt use
 router.post('/login', (req, res) => {
     let login = req.body.login
     let password = req.body.password
     userSchema.findOne({ login: login }, (err, docs) => {
         let hash = docs.password
         bcrypt.compare(password, hash, function(err, result) {
-            // result == true||false
             res.json(result)
         });
     })

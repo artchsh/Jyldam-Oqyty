@@ -1,7 +1,7 @@
 <template>
     <div class="wrapper">
         <div class="user">
-            <UserControl />
+            <RegisterForm />
             <UsersList />
         </div>
         <div class="subject">
@@ -11,18 +11,18 @@
     </div>
 </template>
 <script>
-import UserControl from '@/components/users/UserControl.vue';
-import UsersList from '@/components/users/UsersList.vue';
-import SubjectControl from '@/components/subjects/SubjectControl.vue';
-import SubjectsList from '@/components/subjects/SubjectsList.vue';
+import UsersList from '@/Components/Admin/Users/UsersList.vue';
+import SubjectControl from '@/Components/Admin/Subjects/SubjectCreator.vue';
+import SubjectsList from '@/Components/Admin/Subjects/SubjectsList.vue';
+import RegisterForm from '@/Components/Users/Authentication/RegisterForm.vue';
 export default {
     name: 'ControlPanel',
     components: {
-        UserControl,
-        UsersList,
-        SubjectControl,
-        SubjectsList
-    }
+    UsersList,
+    SubjectControl,
+    SubjectsList,
+    RegisterForm
+}
 }
 </script>
 <style scoped>

@@ -1,5 +1,6 @@
 <script>
 import axios from 'axios'
+import config from '../../../../../secrets/config.js'
 export default {
     name: 'UsersList',
     components: {},
@@ -12,7 +13,7 @@ export default {
     methods: {},
     async mounted() {
         await axios
-            .get('http://localhost:3000/api/users/list')
+            .get(`${config.api.ip}/api/users/list`)
             .then(response => this.responseUsers = response)
         let allUsers = this.responseUsers
         this.users = allUsers.data
@@ -21,7 +22,7 @@ export default {
 </script>
 <template>
     <div class="wrapper">
-        <form class="border p-3 d-flex flex-column h-auto" v-for="user in users" :key="user._id">
+        <form class="h-auto p-3 border d-flex flex-column" v-for="user in users" :key="user._id">
             <label>ID: </label> 
             <input v-bind:value="user._id || 'No'" disabled>
 

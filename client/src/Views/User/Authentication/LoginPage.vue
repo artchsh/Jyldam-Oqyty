@@ -1,5 +1,5 @@
 <script>
-import LoginForm from '@/components/users/Authentication/LoginForm.vue';
+import LoginForm from '@/Components/Users/Authentication/LoginForm.vue';
 export default {
     name: 'LoginPage',
     components: { LoginForm },
@@ -11,8 +11,8 @@ export default {
 }
 </script>
 <template>
-    <div class="justify-center items-center flex w-screen h-screen">
-        <div class="border p-5 rounded-xl shadow">
+    <div class="">
+        <div class="">
             <LoginForm/>
         </div>
     </div>

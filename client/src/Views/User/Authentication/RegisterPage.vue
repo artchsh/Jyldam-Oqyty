@@ -1,5 +1,5 @@
 <script>
-import RegisterForm from '@/components/users/Authentication/RegisterForm.vue';
+import RegisterForm from '@/Components/Users/Authentication/RegisterForm.vue';
 export default {
     name: 'RegisterPage',
     components: { RegisterForm },
@@ -11,8 +11,8 @@ export default {
 }
 </script>
 <template>
-    <div class="flex items-center justify-center w-screen h-screen">
-        <div class="p-5 border shadow rounded-xl w-96">
+    <div class="">
+        <div class="">
             <RegisterForm />
         </div>
     </div>
