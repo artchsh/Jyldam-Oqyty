@@ -11,6 +11,32 @@ router.get('/list', (req, res) => {
     })
 })
 
+// ? GET METHODS
+
+router.get('/find/id/:id', (req, res) => {
+    subjectModel.subjectSchema.findById(req.params.id, function (err, docs) {
+        if (err) { res.send(err) }
+        res.json(docs)
+    })
+})
+
+router.get('/find/name/:subjectName', (req, res) => {
+    subjectModel.subjectSchema.findOne({title: req.params.subjectName}, function (err, docs) {
+        if (err) { res.send(err) }
+        res.json(docs)
+    })
+})
+
+// ? PATCH&POST METHODS
+
+router.patch('/find/:id', (req, res) => {
+    let reqBody = req.body
+    subjectModel.subjectSchema.findByIdAndUpdate(req.params.id, reqBody, function (err, docs) {
+        if (err) { res.status(500) }
+        res.json(reqBody)
+    })
+})
+
 router.post('/add', (req, res) => {
     const subject = new subjectModel.subjectSchema(req.body)
     subject.save((err, user) => {
@@ -22,46 +48,30 @@ router.post('/add', (req, res) => {
     res.json(req.body)
 })
 
-router.get('/find/:id', (req, res) => {
-
-    subjectModel.subjectSchema.findById(req.params.id, function (err, docs) {
-        if (err) { res.send(err) }
-        res.json(docs)
-    })
-})
-
-router.patch('/find/:id', (req, res) => {
-    let reqBody = req.body
-    subjectModel.subjectSchema.findByIdAndUpdate(req.params.id, reqBody, function (err, docs) {
-        if (err) { res.status(500) }
-        res.json(reqBody)
-    })
-})
-
-router.patch('/themes/find/:id/:themeid/:type', (req, res) => {
-    subjectModel.subjectSchema.findOne(
-        { _id: req.params.id },
-        function (err, docs) {
-            for (let i in docs.themes) {
-                if (docs.themes[i]._id = `${req.params.themeid}`) {
-                    switch(req.params.type) {
-                        case 'link':
-                            docs.themes[i].links = req.body
-                            break
-                        case 'theme':
-                            docs.themes[i] = req.body
-                            break
-                        case 'show':
-                            res.json(docs.themes[i])
-                            break
-                        default:
-                            res.status(500)
-                    }
-                }
-            }
-        docs.save()
-    })
-})
+// router.patch('/find/themes/:id/:themeid/:type', (req, res) => {
+//     subjectModel.subjectSchema.findOne(
+//         { _id: req.params.id },
+//         function (err, docs) {
+//             for (let i in docs.themes) {
+//                 if (docs.themes[i]._id = `${req.params.themeid}`) {
+//                     switch(req.params.type) {
+//                         case 'link':
+//                             docs.themes[i].links = req.body
+//                             break
+//                         case 'theme':
+//                             docs.themes[i] = req.body
+//                             break
+//                         case 'show':
+//                             res.json(docs.themes[i])
+//                             break
+//                         default:
+//                             res.status(500)
+//                     }
+//                 }
+//             }
+//         docs.save()
+//     })
+// })
 
 router.patch('/themes/find/:id/:type', (req, res) => {
     subjectModel.subjectSchema.findOne({ _id: req.params.id },

@@ -2,7 +2,6 @@
 
 ## Установка проекта
 
-Установление зависимости
 ```
 npm install
 cd server && npm install

@@ -13,11 +13,12 @@ const linkSchema = mongoose.Schema(
 const themeSchema = mongoose.Schema({
   title: String,
   text: String,
+  requiredUserType: {type: Number, default: 1}, 
   links: [linkSchema],
 })
 
 const subjectSchema = mongoose.Schema({
-  title: String,
+  title: { type: String, unique: true },
   updateDate: String,
   accessLevel: { type: Number, default: 1 },
   themes: [themeSchema],

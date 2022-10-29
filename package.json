@@ -7,9 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "serverDev": "cd server & npm run dev",
     "serverProd": "cd server & npm start",
-    "client": "cd client & npm run serve",
-    "start": "concurrently \"npm run server\" \"npm run client\"",
-    "dev": "concurrently \"npm run serverDev\" \"npm run client\""
+    "AdminClient": "cd admin-client & npm run serve",
+    "UserClient": "cd user-client & npm run dev",
+    "start": "concurrently \"npm run server\" \"npm run AdminClient\" \"npm run UserClient\"",
+    "dev": "concurrently \"npm run serverDev\" \"npm run AdminClient\" \"npm run UserClient\""
   },
   "author": "",
   "license": "ISC",
