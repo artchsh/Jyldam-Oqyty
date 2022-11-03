@@ -1,20 +1,20 @@
 // system
-import React from 'react';
-import { RequireAuth } from 'react-auth-kit';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import React from 'react'
+import { RequireAuth } from 'react-auth-kit'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 // pages
-import DeveloperPage from '../pages/Dev.page';
-import MainPage from '../pages/Main.page';
-import ProfilePage from '../pages/profile/Profile.page';
-import LoginPage from '../pages/Auth/Login.page.auth';
-import RegisterPage from '../pages/Auth/Register.page.auth';
+import DeveloperPage from '../pages/Dev.page'
+import MainPage from '../pages/Main.page'
+import ProfilePage from '../pages/profile/Profile.page'
+import LoginPage from '../pages/Auth/Login.page.auth'
+import RegisterPage from '../pages/Auth/Register.page.auth'
 
 // components
 
 // logic
 const RoutesComponent = () => {
-    return (
+  return (
         <BrowserRouter>
             <Routes>
                 {/* main */}
@@ -38,6 +38,6 @@ const RoutesComponent = () => {
                 />
             </Routes>
         </BrowserRouter>
-    );
-};
-export default RoutesComponent;
+  )
+}
+export default RoutesComponent

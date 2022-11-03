@@ -7,10 +7,10 @@ const app = express()
 
 const url = config.mongo.connect
 const port = config.backend.port
-async function mongooseConnect() { await mongoose.connect(url) }
+async function mongooseConnect () { await mongoose.connect(url) }
 mongooseConnect().catch(err => console.log(err))
 
-let db = mongoose.connection
+const db = mongoose.connection
 db.once('open', _ => {
   console.log('Database connected:', url)
 })
@@ -23,17 +23,17 @@ app.use(cors())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
-const userRouter = require("./src/routes/users")
-app.use("/api/users", userRouter)
+const userRouter = require('./src/routes/users')
+app.use('/api/users', userRouter)
 
-const subjectRouter = require("./src/routes/subjects")
-app.use("/api/subjects", subjectRouter)
+const subjectRouter = require('./src/routes/subjects')
+app.use('/api/subjects', subjectRouter)
 
-const authRouter = require("./src/routes/auth")
-app.use("/api/auth", authRouter)
+const authRouter = require('./src/routes/auth')
+app.use('/api/auth', authRouter)
 
 app.get('/api', (req, res) => {
-  res.json({ "state": "online" })
+  res.json({ state: 'online' })
 })
 
 app.listen(port, () => {

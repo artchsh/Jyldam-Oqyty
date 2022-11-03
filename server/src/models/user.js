@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 const mongoose = require('mongoose')
 
@@ -10,12 +10,12 @@ const userSchema = mongoose.Schema({
   email: { type: String, default: '', unique: true },
   // quickAccess: { type : Array , "default" : [] },
   // bookmarks: { type : Array , "default" : [] },
-  courses: { type: Array, "default": [] },
+  courses: { type: Array, default: [] },
   // subjects: { type: Array, "default": [] },
   password: { type: String, default: '' },
   // phoneNumber: { type: String, default: '' },
   // accessLevel: { type: Number, default: 1 },
-  userType: { type: Number, default: 1 },
+  userType: { type: Number, default: 1 }
   // inventory: { type : Array , "default" : [] }
 })
 

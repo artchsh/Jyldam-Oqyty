@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react'
 
-export default function App() {
-    return (
+export default function App () {
+  return (
         <div className='wrapper'>
             <h1>Profile</h1>
         </div>
-    );
+  )
 }

@@ -1,48 +1,47 @@
-const express = require("express")
+const express = require('express')
 const router = express.Router()
 const subjectModel = require('../models/subject')
 // TODO Переделать в корни всю систему API. Теперь links, themes, subjects, courses будут независимы друг от друга.
 router.use(logger)
 
 router.get('/list', (req, res) => {
-    subjectModel.subjectSchema.find({}, function (err, docs) {
-        if (err) { res.send(err) }
-        res.json(docs)
-    })
+  subjectModel.subjectSchema.find({}, function (err, docs) {
+    if (err) { res.send(err) }
+    res.json(docs)
+  })
 })
 
 router.get('/find/id/:id', (req, res) => {
-    subjectModel.subjectSchema.findById(req.params.id, function (err, docs) {
-        if (err) { res.send(err) }
-        res.json(docs)
-    })
+  subjectModel.subjectSchema.findById(req.params.id, function (err, docs) {
+    if (err) { res.send(err) }
+    res.json(docs)
+  })
 })
 
 router.get('/find/name/:subjectName', (req, res) => {
-    subjectModel.subjectSchema.findOne({ title: req.params.subjectName }, function (err, docs) {
-        if (err) { res.send(err) }
-        res.json(docs)
-    })
+  subjectModel.subjectSchema.findOne({ title: req.params.subjectName }, function (err, docs) {
+    if (err) { res.send(err) }
+    res.json(docs)
+  })
 })
 
-
 router.patch('/find/:id', (req, res) => {
-    let reqBody = req.body
-    subjectModel.subjectSchema.findByIdAndUpdate(req.params.id, reqBody, function (err, docs) {
-        if (err) { res.status(500) }
-        res.json(reqBody)
-    })
+  const reqBody = req.body
+  subjectModel.subjectSchema.findByIdAndUpdate(req.params.id, reqBody, function (err, docs) {
+    if (err) { res.status(500) }
+    res.json(reqBody)
+  })
 })
 
 router.post('/add', (req, res) => {
-    const subject = new subjectModel.subjectSchema(req.body)
-    subject.save((err, user) => {
-        if (err) {
-            console.log('err', err)
-        }
-        console.log('saved subject')
-    })
-    res.json(req.body)
+  const subject = new subjectModel.subjectSchema(req.body)
+  subject.save((err, user) => {
+    if (err) {
+      console.log('err', err)
+    }
+    console.log('saved subject')
+  })
+  res.json(req.body)
 })
 
 // router.patch('/find/themes/:id/:themeid/:type', (req, res) => {
@@ -71,27 +70,28 @@ router.post('/add', (req, res) => {
 // })
 
 router.patch('/themes/find/:id/:type', (req, res) => {
-    subjectModel.subjectSchema.findOne({ _id: req.params.id },
-        function (err, docs) {
-            for (let i in docs.themes) {
-                switch (req.params.type) {
-                    case 'themes':
-                        docs.themes[i] = req.body
-                        break
-                    case 'show':
-                        res.json(docs.themes[i])
-                        break
-                    default:
-                        res.status(500)
-                }
-            }
-            docs.save()
-        })
+  subjectModel.subjectSchema.findOne({ _id: req.params.id },
+    function (err, docs) {
+      if (err) throw err
+      for (const i in docs.themes) {
+        switch (req.params.type) {
+          case 'themes':
+            docs.themes[i] = req.body
+            break
+          case 'show':
+            res.json(docs.themes[i])
+            break
+          default:
+            res.status(500)
+        }
+      }
+      docs.save()
+    })
 })
 
-function logger(req, res, next) {
-    console.log(`http://localhost:3000${req.originalUrl}`)
-    next()
+function logger (req, res, next) {
+  console.log(`http://localhost:3000${req.originalUrl}`)
+  next()
 }
 
 module.exports = router

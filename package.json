@@ -13,6 +13,8 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "concurrently": "^7.4.0"
+        "@microsoft/eslint-formatter-sarif": "^2.1.7",
+        "concurrently": "^7.4.0",
+        "eslint": "^8.10.0"
     }
 }

@@ -1,7 +1,8 @@
-import { Link } from 'react-router-dom';
+import React from 'react'
+import { Link } from 'react-router-dom'
 
-function Folder(props) {
-    return (
+function Folder (props) {
+  return (
         <Link
             className='flex items-center p-4 rounded bg-gray-100 dark:bg-black border border-transparent dark:border-gray-700 transition-transform transform active:scale-95'
             to={props.href}
@@ -39,7 +40,7 @@ function Folder(props) {
                 />
             </svg>
         </Link>
-    );
+  )
 }
 
-export default Folder;
+export default Folder

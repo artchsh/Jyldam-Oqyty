@@ -1,25 +1,26 @@
-import { Link } from 'react-router-dom';
+import React from 'react'
+import { Link } from 'react-router-dom'
 import { useAuthUser, useIsAuthenticated } from 'react-auth-kit'
-import FolderListRendering from '../components/FolderListRendering.component';
-import NavigationBar from '../components/NavigationBar.component';
-import axios from 'axios';
+import FolderListRendering from '../components/FolderListRendering.component'
+import NavigationBar from '../components/NavigationBar.component'
+import axios from 'axios'
 
-function Main() {
+function Main () {
   // TODO Нужно поменять чтобы эти папки появлялись в завимости от доступа пользователя (от уровня доступа и какие айди есть)
-    const folders = [
-        { id: 1, name: 'Подготовка к ЕНТ', href: '/snt' },
-        { id: 2, name: 'Подготовка в НИШ/КТЛ', href: '/nis' },
-    ];
+  const folders = [
+    { id: 1, name: 'Подготовка к ЕНТ', href: '/snt' },
+    { id: 2, name: 'Подготовка в НИШ/КТЛ', href: '/nis' }
+  ]
 
-    // TODO 
-    const isAuthenticated = useIsAuthenticated()
-    const auth = useAuthUser()
+  // TODO
+  const isAuthenticated = useIsAuthenticated()
+  const auth = useAuthUser()
 
-    if(isAuthenticated) {
-      // auth().login etc.into menu bar
-      // auth().courses => push each cource to const folders for list rendering
-    }
-    return (
+  if (isAuthenticated) {
+    // auth().login etc.into menu bar
+    // auth().courses => push each cource to const folders for list rendering
+  }
+  return (
         <div>
             <NavigationBar />
             <div className='h-screen'>
@@ -58,7 +59,7 @@ function Main() {
                 </div>
             </footer>
         </div>
-    );
+  )
 }
 
-export default Main;
+export default Main
