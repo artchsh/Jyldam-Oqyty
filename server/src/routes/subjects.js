@@ -1,7 +1,7 @@
 const express = require("express")
 const router = express.Router()
 const subjectModel = require('../models/subject')
-
+// TODO Переделать в корни всю систему API. Теперь links, themes, subjects, courses будут независимы друг от друга.
 router.use(logger)
 
 router.get('/list', (req, res) => {
@@ -11,8 +11,6 @@ router.get('/list', (req, res) => {
     })
 })
 
-// ? GET METHODS
-
 router.get('/find/id/:id', (req, res) => {
     subjectModel.subjectSchema.findById(req.params.id, function (err, docs) {
         if (err) { res.send(err) }
@@ -21,13 +19,12 @@ router.get('/find/id/:id', (req, res) => {
 })
 
 router.get('/find/name/:subjectName', (req, res) => {
-    subjectModel.subjectSchema.findOne({title: req.params.subjectName}, function (err, docs) {
+    subjectModel.subjectSchema.findOne({ title: req.params.subjectName }, function (err, docs) {
         if (err) { res.send(err) }
         res.json(docs)
     })
 })
 
-// ? PATCH&POST METHODS
 
 router.patch('/find/:id', (req, res) => {
     let reqBody = req.body
@@ -77,19 +74,19 @@ router.patch('/themes/find/:id/:type', (req, res) => {
     subjectModel.subjectSchema.findOne({ _id: req.params.id },
         function (err, docs) {
             for (let i in docs.themes) {
-                    switch(req.params.type) {
-                        case 'themes':
-                            docs.themes[i] = req.body
-                            break
-                        case 'show':
-                            res.json(docs.themes[i])
-                            break
-                        default:
-                            res.status(500)
-                    }
+                switch (req.params.type) {
+                    case 'themes':
+                        docs.themes[i] = req.body
+                        break
+                    case 'show':
+                        res.json(docs.themes[i])
+                        break
+                    default:
+                        res.status(500)
                 }
-        docs.save()
-    })
+            }
+            docs.save()
+        })
 })
 
 function logger(req, res, next) {

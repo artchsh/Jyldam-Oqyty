@@ -12,11 +12,22 @@ router.get('/', (req, res) => {
 
 router.post('/login', (req, res) => {
     let login = req.body.login
-    let password = req.body.password
     userSchema.findOne({ login: login }, (err, docs) => {
+        if(docs == null) {
+            return res.status(500)
+        }
+        let password = req.body.password
         let hash = docs.password
         bcrypt.compare(password, hash, function(err, result) {
-            res.json(result)
+            if (result) {
+                res.status(200).send({
+                    token: 'test123',
+                    expiresIn: '120',
+                    authState: docs,
+                })
+            } else {
+                res.status(500)
+            }
         });
     })
 })

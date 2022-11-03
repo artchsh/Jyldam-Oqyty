@@ -12,10 +12,10 @@ mongooseConnect().catch(err => console.log(err))
 
 let db = mongoose.connection
 db.once('open', _ => {
-    console.log('Database connected:', url)
+  console.log('Database connected:', url)
 })
 db.on('error', err => {
-    console.error('connection error:', err)
+  console.error('Сonnection error:', err)
 })
 
 app.use(cors())

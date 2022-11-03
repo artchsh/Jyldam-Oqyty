@@ -1,9 +1,10 @@
 const express = require("express")
 const router = express.Router()
 const userSchema = require('../models/user')
+// TODO Переделать систему точно так же как subjects.js 
 
 router.get('/', (req, res) => {
-    res.send('Go on.')
+    res.status(200)
 })
 
 router.post('/add', async (req, res) => {
