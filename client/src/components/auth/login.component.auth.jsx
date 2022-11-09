@@ -1,63 +1,55 @@
-import React from 'react'
-import axios from 'axios'
-import { useIsAuthenticated, useSignIn } from 'react-auth-kit'
-import { useNavigate, Navigate } from 'react-router-dom'
-// FIXME CHECK STACKOVERFLOW TO FIX AN ERROR
+import React, { useEffect, useState } from 'react'
+
+import { useNavigate, Link } from 'react-router-dom'
+import { auth, signInWithEmailAndPassword, signInWithGoogle } from '../../firebase'
+import { useAuthState } from 'react-firebase-hooks/auth'
 const SignInComponent = () => {
-  const isAuthenticated = useIsAuthenticated()
-  const signIn = useSignIn()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [user, loading, error] = useAuthState(auth)
   const navigate = useNavigate()
-
-  const [formData, setFormData] = React.useState({ login: '', password: '' })
-  async function onSubmit (e) {
-    e.preventDefault()
-    axios
-      .post('http://localhost:3030/api/auth/login', formData)
-      .then((res) => {
-        if (res.status === 200) {
-          if (
-            signIn({
-              token: res.data.token,
-              expiresIn: res.data.expiresIn,
-              tokenType: 'Bearer',
-              authState: res.data.authUserState
-            })
-          ) {
-            // navigate("/profile")
-            console.log('logged in')
-          } else {
-            // Throw error
-          }
-        } else {
-          console.log('status 500')
-        }
-      })
-  }
-  if (isAuthenticated()) {
-    // If authenticated user, then redirect to his profile
-    return <Navigate to={'/profile'} replace />
-  } else {
-    return (
-            <form onSubmit={onSubmit} className='flex flex-col w-96 p-2'>
-                <input
-                    className='text-black mt-2'
-                    type={'login'}
-                    onChange={(e) =>
-                      setFormData({ ...formData, login: e.target.value })
-                    }
-                />
-                <input
-                    className='text-black mt-2'
-                    type={'password'}
-                    onChange={(e) =>
-                      setFormData({ ...formData, password: e.target.value })
-                    }
-                />
-
-                <button type='submit'>Submit</button>
-            </form>
-    )
-  }
+  useEffect(() => {
+    if (loading) {
+      // maybe trigger a loading screen
+      return
+    }
+    if (user) navigate('/profile')
+  }, [user, loading])
+  return (
+    <div className="">
+      <div className="">
+        <input
+          type="text"
+          className=""
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="E-mail Address"
+        />
+        <input
+          type="password"
+          className=""
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password"
+        />
+        <button
+          className=""
+          onClick={() => signInWithEmailAndPassword(email, password)}
+        >
+          Login
+        </button>
+        <button className="" onClick={signInWithGoogle}>
+          Login with Google
+        </button>
+        <div>
+          <Link to="/reset">Forgot Password</Link>
+        </div>
+        <div>
+          Don&apos;t have an account? <Link to="/register">Register</Link> now.
+        </div>
+      </div>
+    </div>
+  )
 }
 
 export default SignInComponent

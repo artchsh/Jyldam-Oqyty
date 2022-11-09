@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { useAuthUser, useIsAuthenticated } from 'react-auth-kit'
+// import { useAuthUser, useIsAuthenticated } from 'react-auth-kit'
 import FolderListRendering from '../components/FolderListRendering.component'
 import NavigationBar from '../components/NavigationBar.component'
 import axios from 'axios'
@@ -12,14 +12,14 @@ function Main () {
     { id: 2, name: 'Подготовка в НИШ/КТЛ', href: '/nis' }
   ]
 
-  // TODO
-  const isAuthenticated = useIsAuthenticated()
-  const auth = useAuthUser()
+  // TODO СДЕЛАТЬ ЗАГРУЗКУ КУРСОВ В ЗАВИСИМОСТИ ОТ УРОВНЯ ДОСТУПА ПОЛЬЗОВАТЕЛЯ
+  //   const isAuthenticated = useIsAuthenticated()
+  //   const auth = useAuthUser()
 
-  if (isAuthenticated) {
-    // auth().login etc.into menu bar
-    // auth().courses => push each cource to const folders for list rendering
-  }
+  //   if (isAuthenticated) {
+  //     auth().login etc.into menu bar
+  //     auth().courses => push each cource to const folders for list rendering
+  //   }
   return (
         <div>
             <NavigationBar />
@@ -37,7 +37,7 @@ function Main () {
                 <div className='my-8'>
                     <div className='max-w-5xl mx-auto px-4 sm:px-6 undefined'>
                         <h2 className='font-bold uppercase text-xs tracking-widest opacity-50 mb-6'>
-                            Направления
+                            Популярное сейчас
                         </h2>
                         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-6'>
                             <FolderListRendering array={folders} />

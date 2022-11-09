@@ -126,5 +126,11 @@ dist
 .yarn/install-state.gz
 .pnp.*
 admin-client/public/oldVersionsEduPortal
+<<<<<<< Updated upstream
 *.BACKUP
 .vscode/settings.json
+=======
+.BACKUP
+.vscode/settings.json
+*.BACKUP
+>>>>>>> Stashed changes

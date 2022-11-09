@@ -1,6 +1,6 @@
 // system
 import React from 'react'
-import { RequireAuth } from 'react-auth-kit'
+// import { RequireAuth } from 'react-auth-kit'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 // pages
@@ -28,12 +28,10 @@ const RoutesComponent = () => {
                 <Route path={'/dev'} element={<DeveloperPage />} />
 
                 {/* Other */}
-                <Route
-                    path={'/profile'}
-                    element={
-                        <RequireAuth loginPath={'/login'}>
+                <Route path={'/profile'} element={
+                        // <RequireAuth loginPath={'/login'}>
                             <ProfilePage />
-                        </RequireAuth>
+                        // </RequireAuth>
                     }
                 />
             </Routes>

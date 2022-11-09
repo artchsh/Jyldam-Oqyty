@@ -1,72 +1,64 @@
-import React from 'react'
-import axios from 'axios'
-import { useNavigate, Navigate } from 'react-router-dom'
-import { useIsAuthenticated } from 'react-auth-kit'
+import React, { useEffect, useState } from 'react'
+import { useAuthState } from 'react-firebase-hooks/auth'
+import { Link, useNavigate } from 'react-router-dom'
+import {
+  auth,
+  registerWithEmailAndPassword,
+  signInWithGoogle
+} from '../../firebase'
 
-const SignInComponent = () => {
+function Register () {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [name, setName] = useState('')
+  const [user, loading, error] = useAuthState(auth)
   const navigate = useNavigate()
-  const isAuthenticated = useIsAuthenticated()
-
-  const [formData, setFormData] = React.useState({
-    login: '',
-    email: '',
-    password: ''
-  })
-
-  const [error, setError] = React.useState()
-  async function onSubmit (e) {
-    e.preventDefault()
-    axios
-      .post('http://localhost:3030/api/auth/register', formData)
-      .then((res) => {
-        if (res.status === 200) {
-          setError("you're registred now, go to login page")
-        } else {
-          setError('error occured. try again')
-        }
-      })
+  const register = () => {
+    if (!name) alert('Please enter name')
+    registerWithEmailAndPassword(name, email, password)
   }
-  if (isAuthenticated()) {
-    // If authenticated user, then redirect to his profile
-    return <Navigate to={'/profile'} replace />
-  } else {
-    return (
-            <div>
-                <div>{error}</div>
-                <form onSubmit={onSubmit} className='flex flex-col w-96 p-2'>
-                    <input
-                        className='text-black mt-2'
-                        type={'login'}
-                        onChange={(e) =>
-                          setFormData({ ...formData, login: e.target.value })
-                        }
-                        placeholder='login'
-                    />
-                    <input
-                        className='text-black mt-2'
-                        type={'email'}
-                        onChange={(e) =>
-                          setFormData({ ...formData, email: e.target.value })
-                        }
-                        placeholder='email'
-                    />
-                    <input
-                        className='text-black mt-2'
-                        type={'password'}
-                        onChange={(e) =>
-                          setFormData({
-                            ...formData,
-                            password: e.target.value
-                          })
-                        }
-                        placeholder='password'
-                    />
-
-                    <button type='submit'>Submit</button>
-                </form>
-            </div>
-    )
-  }
+  useEffect(() => {
+    if (loading) return
+    if (user) navigate('/profile')
+  }, [user, loading])
+  return (
+    <div className="register">
+      <div className="register__container">
+        <input
+          type="text"
+          className="text-black"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Full Name"
+        />
+        <input
+          type="text"
+          className="text-black"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="E-mail Address"
+        />
+        <input
+          type="password"
+          className="text-black"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password"
+        />
+        <button className="register__btn" onClick={register}>
+          Register
+        </button>
+        <button
+          className="register__btn register__google"
+          onClick={signInWithGoogle}
+        >
+          Register with Google
+        </button>
+        <div>
+          Already have an account? <Link to="/">Login</Link> now.
+        </div>
+      </div>
+    </div>
+  )
 }
-
-export default SignInComponent
+export default Register
